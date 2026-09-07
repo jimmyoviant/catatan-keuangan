@@ -5,8 +5,23 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#111827">
 <title>Catatan Keuangan Offline AI</title>
+
+<!-- PWA Manifest & Icons -->
 <link rel="manifest" href="manifest.json">
-  <style>
+<link rel="apple-touch-icon" href="icon-192.png">
+
+<!-- Registrasi Service Worker -->
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('./sw.js')
+        .then(reg => console.log('Service Worker terdaftar:', reg))
+        .catch(err => console.error('Gagal registrasi SW:', err));
+    });
+  }
+</script>
+
+<style>
 *{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;background:#f3f4f6;color:#111827}
 button,input,select{font:inherit}button{cursor:pointer;border:0;border-radius:10px;padding:10px 14px;background:#111827;color:white}
 .app{max-width:1200px;margin:auto;padding:18px}.top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:16px}
